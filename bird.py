@@ -39,6 +39,7 @@ class Bird(pygame.sprite.Sprite):
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
                 self.clicked = True
                 self.velocity = -10
+                self.settings.wing_sound.play() 
             if pygame.mouse.get_pressed()[0] == 0:
                 self.clicked = False
             # Handle the animation
