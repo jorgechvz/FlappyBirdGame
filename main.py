@@ -36,27 +36,31 @@ game_over_img = pygame.image.load("assets/fb-game-over.png").convert_alpha()
 game_over_img = pygame.transform.scale(game_over_img, (500, 200))
 
 
-# Instantiate Bird Class
+# Create Bird and Pipe Groups to hold the Bird and Pipe objects respectively
 bird_group = pygame.sprite.Group()
 pipe_group = pygame.sprite.Group()
 
+# Create Bird Object and add it to the bird_group
 flappy_bird = Bird(int(settings.WIDTH / 2), int(settings.HEIGHT / 2), settings)
 bird_group.add(flappy_bird)
 
-
+# Function to draw text on the screen
 def draw_text(text, font, text_col, x, y):
+    # Render the text using the font and color
     img = font.render(text, True, text_col)
     screen.blit(img, (x, y))
 
-
+# Function to reset the game
 def reset_game():
+    # Clear the pipe_group
     pipe_group.empty()
     flappy_bird.rect.x = int(settings.WIDTH / 2)
     flappy_bird.rect.y = int(settings.HEIGHT / 2)
     settings.score = 0
+    # Return the score
     return settings.score
 
-
+# Function to draw the score message
 def draw_score_message():
     # Calculate the size of the text
     text = "Score: " + str(settings.score)
@@ -81,11 +85,13 @@ def draw_score_message():
 restart_button = Button(
     settings.WIDTH // 2 - 50, settings.HEIGHT // 2 + 200, button_img
 )
-next_level_button = Button(settings.WIDTH / 2, settings.HEIGHT / 2, button_img)
+
+# Variable to control the display of the start message
 show_message = True
 
 run = True
 while run:
+    # Set the frame rate
     settings.CLOCK.tick(settings.FPS)
 
     # Draw background image
@@ -96,12 +102,14 @@ while run:
     bird_group.update()
     pipe_group.draw(screen)
 
+    # Draw and Update Pipes
     screen.blit(bg_ground_image, (bg_scroll, 682))
 
     # Logic for score
     if len(pipe_group) > 0:
         for pipe in pipe_group:
             if pipe.position == -1:  # Only score for bottom pipes
+                # If the bird passes the pipe, increment the score
                 if (
                     bird_group.sprites()[0].rect.left > pipe.rect.left
                     and bird_group.sprites()[0].rect.right < pipe.rect.right
@@ -112,14 +120,17 @@ while run:
                         settings.point_sound.play()
                         settings.score += 1
                         pipe.passed_pipe = False
-    # Display Score
+    # Draw the start message
     if show_message:
+        # Draw the title and start message
         screen.blit(title_img, (settings.WIDTH / 2 - title_img.get_width() / 2, 100))
         screen.blit(start_img, (settings.WIDTH / 2 - start_img.get_width() / 2, 600))
 
+    # Draw the score 
     if settings.game_over == False and show_message == False:
         draw_text(str(settings.score), font, white, int(settings.WIDTH / 2), 40)
-
+    
+    # Check for collisions
     if not settings.game_over and (
         pygame.sprite.groupcollide(bird_group, pipe_group, False, False)
         or flappy_bird.rect.top < 0 or flappy_bird.rect.bottom > 682
@@ -128,13 +139,16 @@ while run:
         settings.game_over = True
         settings.flying = False
 
+    # Check if the bird has passed the screen
     if flappy_bird.rect.bottom > 682:
         settings.game_over = True
         settings.flying = False
 
+    # Update the background scroll
     if settings.game_over == False and settings.flying == True:
         # Generate new pipes
         time_now = pygame.time.get_ticks()
+        # Generate new pipes
         if time_now - settings.last_pipe > settings.pipe_frequency:
             pipe_height = random.randint(-100, 100)
             bottom_pipe = Pipe(
@@ -151,7 +165,7 @@ while run:
         # Reset background to loop
         if abs(bg_scroll) > 105:
             bg_scroll = 0
-
+    # Draw the game over message
     if settings.game_over == True:
         screen.blit(
             game_over_img, (settings.WIDTH / 2 - game_over_img.get_width() / 2, 100)
@@ -162,11 +176,12 @@ while run:
             show_message = True
             settings.score = reset_game()
 
-    # Event Loop
+    # Event Loop to check for events
     for event in pygame.event.get():
         pos = pygame.mouse.get_pos()
         if event.type == pygame.QUIT:
             run = False
+        # Check for mouse click events to start the game and restart the game
         if (
             event.type == pygame.MOUSEBUTTONDOWN
             and settings.game_over == False
