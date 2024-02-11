@@ -1,32 +1,49 @@
-# FlappyBirdGame
+# Flappy Bird Game with Pygame
 
 # Overview
 
-{Important!  Do not say in this section that this is college assignment.  Talk about what you are trying to accomplish as a software engineer to further your learning.}
+In this project, I've created a Flappy Bird game using the Pygame library. The game challenges players to guide a bird through a series of pipes by clicking the mouse. The goal is to achieve the highest score possible by navigating the bird through the pipes without colliding with them or the ground.
 
-{Provide a description the game that you wrote. Describe how to play your game.}
+## How to Play
 
-{Describe your purpose for writing this software.}
+* Click the mouse to make the bird flap its wings and ascend.
+* Navigate the bird through the gaps between pipes.
+* Avoid collisions with the pipes and the ground.
+* The game ends if the bird collides with any obstacles.
+* Strive to achieve the highest score by passing through as many pipes as possible.
 
-{Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the game being played and a walkthrough of the code.}
+## Purpose
 
-[Software Demo Video](http://youtube.link.goes.here)
+As a software engineer, my primary aim in developing this game was to advance my skills in Python programming and game development, particularly with the Pygame library. This project allowed me to gain practical experience in implementing game mechanics, managing user input, and handling game state.
+
+[Flappy Bird Game Demo](https://www.youtube.com/watch?v=eWBEttHAIKI)
 
 # Development Environment
 
-{Describe the tools that you used to develop the software}
+## Tools Used
 
-{Describe the programming language that you used and any libraries.}
+* IDE: Visual Studio Code
+* Version Control: Git and GitHub
+* Graphics: Canva for sprite creation
+
+## Programming Language and Libraries
+
+* Python 3: Primary programming language
+* Pygame: Python library for game development
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
-* [Web Site Name](http://url.link.goes.here)
-* [Web Site Name](http://url.link.goes.here)
+* [Pygame Documentation: Official documentation for Pygame.](https://www.pygame.org/docs/ref/pygame.html)
+* [How to Create a Game with Python and PyGame](https://reintech.io/blog/how-to-create-a-game-with-python-and-pygame)
+* [How to install PyGame on a Mac](https://www.youngwonks.com/blog/How-to-Install-PyGame-on-a-Mac)
+* [How To Install Python on Windows, macOS, and Linux](https://kinsta.com/knowledgebase/install-python/)
+* [Tutorial: How to make Flappy Bird Game in Pygame?](https://www.geeksforgeeks.org/how-to-make-flappy-bird-game-in-pygame/)
+* [How to play an audio file in Pygame](https://www.educative.io/answers/how-to-play-an-audio-file-in-pygame)
 
 # Future Work
 
-{Make a list of things that you need to fix, improve, and add in the future.}
-* Item 1
-* Item 2
-* Item 3
+* Incorporate different levels of difficulty.
+* Optimize code for better performance.
+* Conduct user testing and gather feedback for further improvements.
+* Incorporate authentication mechanism for the game
+* Add a database to save the score as users
