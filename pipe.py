@@ -4,6 +4,8 @@ import pygame
 class Pipe(pygame.sprite.Sprite):
     def __init__(self, x, y, position, settings):
         pygame.sprite.Sprite.__init__(self)
+        self.passed_pipe = False
+        self.position = position
         self.image = pygame.image.load("assets/fb-pipe.png").convert_alpha()
         self.image = pygame.transform.scale(self.image, (100, 600))
         self.rect = self.image.get_rect()
